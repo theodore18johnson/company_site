@@ -65,7 +65,7 @@ const WalletConnect = () => {
     detectWallets();
   }, []);
 
-  const handleWalletConnect = async (walletId: string) => {
+  const handleWalletConnect = async (_walletId: string) => {
     try {
       await connectWallet();
       // Navigation to /presale will happen automatically due to the account effect
