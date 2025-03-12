@@ -1,11 +1,13 @@
+import { useState, useEffect } from 'react';
 import PresaleView from '../views/PresaleView';
+import { useWallet } from '../contexts/WalletContext';
 
 // Mock data for presale page
 const presaleData = {
   intro: {
     title: "DWAT Token Presale",
     description: "Be among the first to own DWAT, the native token that powers the KingOverRoad metaverse economy.",
-    endDate: "2024-12-31T23:59:59Z"
+    endDate: "2025-06-30T23:59:59Z"
   },
   tokenInfo: {
     symbol: "DWAT",
@@ -41,12 +43,12 @@ const presaleData = {
   ],
   tokenomics: {
     distribution: [
-      { label: "Presale", percentage: 30, color: "#6a0dad" },
-      { label: "Team & Advisors", percentage: 15, color: "#9b59b6" },
-      { label: "Development", percentage: 20, color: "#8e44ad" },
-      { label: "Marketing", percentage: 10, color: "#a569bd" },
-      { label: "Ecosystem Growth", percentage: 15, color: "#bb8fce" },
-      { label: "Reserve", percentage: 10, color: "#d2b4de" }
+      { label: "Presale", percentage: 30, color: "#ffeb00" },
+      { label: "Team & Advisors", percentage: 15, color: "#ffd700" },
+      { label: "Development", percentage: 20, color: "#ffe135" },
+      { label: "Marketing", percentage: 10, color: "#f9e79f" },
+      { label: "Ecosystem Growth", percentage: 15, color: "#f7dc6f" },
+      { label: "Reserve", percentage: 10, color: "#f4d03f" }
     ],
     vesting: {
       presale: "25% at TGE, 25% monthly for 3 months",
@@ -87,7 +89,97 @@ const presaleData = {
 };
 
 const PresaleContainer = () => {
-  return <PresaleView presaleData={presaleData} />;
+  const { 
+    account, 
+    chainId, 
+    balance, 
+    isConnecting, 
+    error, 
+    connectWallet, 
+    disconnectWallet 
+  } = useWallet();
+  
+  const [purchaseAmount, setPurchaseAmount] = useState<number>(0);
+  const [selectedCurrency, setSelectedCurrency] = useState<string>('ETH');
+  const [estimatedCost, setEstimatedCost] = useState<string>('0');
+
+  // Calculate estimated cost when purchase amount or currency changes
+  useEffect(() => {
+    if (purchaseAmount) {
+      // Mock exchange rates (in a real app, you'd get these from an API)
+      const rates = {
+        ETH: 0.00003, // 1 DWAT = 0.00003 ETH
+        USDT: 0.05,   // 1 DWAT = $0.05 USDT
+        USDC: 0.05    // 1 DWAT = $0.05 USDC
+      };
+      
+      const amount = purchaseAmount;
+      if (!isNaN(amount)) {
+        const cost = amount * rates[selectedCurrency as keyof typeof rates];
+        setEstimatedCost(cost.toFixed(selectedCurrency === 'ETH' ? 6 : 2));
+      }
+    } else {
+      setEstimatedCost('0');
+    }
+  }, [purchaseAmount, selectedCurrency]);
+
+  const handlePurchase = async () => {
+    // In a real implementation, this would interact with your presale smart contract
+    alert(`This would initiate a purchase of ${purchaseAmount} DWAT tokens for ${estimatedCost} ${selectedCurrency}`);
+    
+    // Example of what a real implementation might look like:
+    /*
+    try {
+      if (!account) {
+        await connectWallet();
+      }
+      
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      
+      // Connect to your presale contract
+      const presaleContract = new ethers.Contract(PRESALE_CONTRACT_ADDRESS, PRESALE_ABI, signer);
+      
+      // Call the purchase function on your contract
+      const tx = await presaleContract.purchaseTokens({
+        value: ethers.utils.parseEther(estimatedCost) // if purchasing with ETH
+      });
+      
+      await tx.wait();
+      alert('Purchase successful!');
+    } catch (err) {
+      console.error('Purchase failed:', err);
+      alert(`Purchase failed: ${err.message}`);
+    }
+    */
+  };
+
+  const walletInfo = {
+    account,
+    chainId,
+    balance,
+    isConnecting,
+    error,
+    connectWallet,
+    disconnectWallet
+  };
+
+  const purchaseInfo = {
+    purchaseAmount,
+    setPurchaseAmount,
+    selectedCurrency,
+    setSelectedCurrency,
+    estimatedCost,
+    handlePurchase
+  };
+
+  return (
+    <PresaleView 
+      presaleData={presaleData} 
+      walletInfo={walletInfo}
+      purchaseInfo={purchaseInfo}
+    />
+  );
 };
 
 export default PresaleContainer; 

@@ -1,4 +1,7 @@
-import Button from '../components/common/Button';
+import { FaCheckCircle } from "react-icons/fa";
+import Button from "../components/common/Button";
+import { motion } from "framer-motion";
+import { RxCrossCircled } from "react-icons/rx";
 
 type AboutViewProps = {
   aboutData: {
@@ -30,161 +33,346 @@ type AboutViewProps = {
 const AboutView = ({ aboutData }: AboutViewProps) => {
   const { mission, story, team, roadmap } = aboutData;
 
+  // Animation variants
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
-    <div className="pt-20">
+    <div className="pt-[104px]">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-purple-900/20">
+      <motion.section
+        className="py-20 bg-black"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text">About KingOverRoad</h1>
-            <p className="text-xl text-gray-300 mb-8">
-              Discover the story behind the revolutionary metaverse game that's changing how we play, connect, and own digital assets.
-            </p>
+            <motion.h1
+              className="text-4xl md:text-6xl font-bold mb-6 gradient-text"
+              variants={scaleIn}
+            >
+              About KingOverRoad
+            </motion.h1>
+            <motion.p className="text-xl text-gray-300 mb-8" variants={fadeIn}>
+              Discover the story behind the revolutionary metaverse game that's
+              changing how we play, connect, and own digital assets.
+            </motion.p>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Mission Section */}
-      <section className="py-20 bg-black">
+      <motion.section
+        className="py-20 bg-black"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">{mission.title}</h2>
-            <p className="text-xl text-gray-300 leading-relaxed">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold mb-6 gradient-text"
+              variants={scaleIn}
+            >
+              {mission.title}
+            </motion.h2>
+            <motion.p
+              className="text-xl text-gray-300 leading-relaxed"
+              variants={fadeIn}
+            >
               {mission.description}
-            </p>
+            </motion.p>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Story Section */}
-      <section className="py-20 bg-gradient-to-b from-purple-900/20 to-black">
+      <motion.section
+        className="py-20 bg-gradient-to-b from-primary-900/20 to-black"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">{story.title}</h2>
-            <div className="space-y-6">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold mb-6 gradient-text"
+              variants={scaleIn}
+            >
+              {story.title}
+            </motion.h2>
+            <motion.div className="space-y-6" variants={staggerContainer}>
               {story.paragraphs.map((paragraph, index) => (
-                <p key={index} className="text-lg text-gray-300 leading-relaxed">
+                <motion.p
+                  key={index}
+                  className="text-lg text-gray-300 leading-relaxed"
+                  variants={fadeIn}
+                >
                   {paragraph}
-                </p>
+                </motion.p>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Team Section */}
-      <section className="py-20 bg-black">
+      <motion.section
+        className="py-20 bg-black"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">Our Team</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Meet the visionaries behind KingOverRoad who are pushing the boundaries of gaming technology.
-            </p>
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold mb-4 gradient-text"
+              variants={scaleIn}
+            >
+              Our Team
+            </motion.h2>
+            <motion.p
+              className="text-xl text-gray-300 max-w-3xl mx-auto"
+              variants={fadeIn}
+            >
+              Meet the visionaries behind KingOverRoad who are pushing the
+              boundaries of gaming technology.
+            </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerContainer}
+          >
             {team.map((member) => (
-              <div 
-                key={member.id} 
-                className="bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden transition-transform hover:-translate-y-2 hover:shadow-xl border border-purple-500/20"
+              <motion.div
+                key={member.id}
+                className="bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-primary-500/20"
+                variants={fadeIn}
+                whileHover={{
+                  y: -8,
+                  boxShadow: "0 10px 25px -5px rgba(124, 58, 237, 0.3)",
+                  transition: { duration: 0.2 },
+                }}
               >
                 <div className="h-64 overflow-hidden">
-                  <img 
-                    src={member.imageSrc} 
-                    alt={member.name} 
+                  <motion.img
+                    src={member.imageSrc}
+                    alt={member.name}
                     className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
                   />
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                  <p className="text-purple-400 mb-3">{member.role}</p>
+                  <p className="text-primary-400 mb-3">{member.role}</p>
                   <p className="text-gray-400">{member.bio}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Roadmap Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-purple-900/20">
+      <motion.section
+        className="py-20 bg-gradient-to-b from-black to-primary-900/20"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">Development Roadmap</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold mb-4 gradient-text"
+              variants={scaleIn}
+            >
+              Development Roadmap
+            </motion.h2>
+            <motion.p
+              className="text-xl text-gray-300 max-w-3xl mx-auto"
+              variants={fadeIn}
+            >
               Our journey to revolutionize the metaverse gaming experience.
-            </p>
+            </motion.p>
           </div>
 
           <div className="max-w-4xl mx-auto">
             <div className="relative">
               {/* Timeline line */}
-              <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-purple-600/50"></div>
-              
+              <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-primary-600/50"></div>
+
               {/* Roadmap items */}
-              <div className="space-y-12">
+              <motion.div className="space-y-12" variants={staggerContainer}>
                 {roadmap.map((phase, index) => (
-                  <div key={phase.id} className="relative">
-                    <div className={`flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                  <motion.div
+                    key={phase.id}
+                    className="relative"
+                    variants={fadeIn}
+                  >
+                    <div
+                      className={`flex flex-col md:flex-row items-center ${
+                        index % 2 === 0 ? "md:flex-row-reverse" : ""
+                      }`}
+                    >
                       {/* Timeline dot */}
-                      <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full border-4 border-purple-600 bg-black z-10"></div>
-                      
+                      <motion.div
+                        className={`absolute ${
+                          index % 2 === 0
+                            ? " md:left-[calc(50%-24px)]"
+                            : "left-0 md:left-1/2"
+                        } transform md:-translate-x-1/2 w-6 h-6 rounded-full border-4 border-primary-600 bg-black z-10`}
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                      ></motion.div>
+
                       {/* Content */}
-                      <div className="md:w-1/2 pl-8 md:pl-0 md:pr-12 md:text-right">
-                        <div className={`bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border ${phase.completed ? 'border-green-500/30' : 'border-purple-500/20'}`}>
-                          <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium mb-2 ${phase.completed ? 'bg-green-900/50 text-green-400' : 'bg-purple-900/50 text-purple-400'}`}>
-                            {phase.completed ? 'Completed' : 'In Progress'}
+                      <div className="md:w-1/2 pl-8 md:pl-0 md:text-right">
+                        <motion.div
+                          className={`bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border ${
+                            phase.completed
+                              ? "border-green-500/30"
+                              : "border-primary-500/20"
+                          }`}
+                          whileHover={{
+                            y: -5,
+                            boxShadow: phase.completed
+                              ? "0 8px 20px -5px rgba(34, 197, 94, 0.2)"
+                              : "0 8px 20px -5px rgba(124, 58, 237, 0.2)",
+                            transition: { duration: 0.2 },
+                          }}
+                        >
+                          <div
+                            className={`inline-block px-3 py-1 rounded-full text-sm font-medium mb-2 ${
+                              phase.completed
+                                ? "bg-green-900/50 text-green-400"
+                                : "bg-primary-900/50 text-primary-400"
+                            }`}
+                          >
+                            {phase.completed ? "Completed" : "In Progress"}
                           </div>
-                          <h3 className="text-xl font-bold mb-1">{phase.phase}</h3>
+                          <h3 className="text-xl font-bold mb-1">
+                            {phase.phase}
+                          </h3>
                           <p className="text-gray-400 mb-4">{phase.timeline}</p>
                           <ul className="space-y-2">
                             {phase.milestones.map((milestone, i) => (
-                              <li key={i} className="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                </svg>
+                              <li
+                                key={i}
+                                className="flex items-center text-nowrap"
+                              >
+                                {phase.completed ? (
+                                  <FaCheckCircle
+                                    className="text-primary-400 mr-2"
+                                    size={20}
+                                  />
+                                ) : (
+                                  <RxCrossCircled
+                                    className="text-primary-400 mr-2"
+                                    size={20}
+                                  />
+                                )}
                                 <span>{milestone}</span>
                               </li>
                             ))}
                           </ul>
-                        </div>
+                        </motion.div>
                       </div>
-                      
+
                       {/* Empty space for alternating layout */}
                       <div className="md:w-1/2"></div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-black relative overflow-hidden">
+      <motion.section
+        className="py-20 bg-black relative overflow-hidden"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="absolute inset-0 z-0 opacity-20">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 animate-pulse"></div>
+          <div className="absolute inset-0 bg-primary-600"></div>
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">Join Our Community</h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Be part of the KingOverRoad journey and help shape the future of this revolutionary metaverse game.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">
-                Join Discord
-              </Button>
-              <Button variant="outline" size="lg">
-                Follow on Twitter
-              </Button>
-            </div>
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold mb-6 gradient-text"
+              variants={scaleIn}
+            >
+              Join Our Community
+            </motion.h2>
+            <motion.p className="text-xl text-gray-300 mb-8" variants={fadeIn}>
+              Be part of the KingOverRoad journey and help shape the future of
+              this revolutionary metaverse game.
+            </motion.p>
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              variants={staggerContainer}
+            >
+              <motion.div
+                variants={fadeIn}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button size="lg">Join Discord</Button>
+              </motion.div>
+              <motion.div
+                variants={fadeIn}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button variant="outline" size="lg">
+                  Follow on Twitter
+                </Button>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };
 
-export default AboutView; 
+export default AboutView;

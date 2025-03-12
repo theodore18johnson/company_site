@@ -4,9 +4,9 @@ import Orc from '../assets/images/orc.jpg';
 import Elf from '../assets/images/elf.jpg';
 import Dwarf from '../assets/images/dwarf.jpg';
 import BgHuman from '../assets/images/bg/human.png';
-import BgOrc from '../assets/images/bg/orcs.jpg';
-import BgElf from '../assets/images/bg/elves.jpg';
-import BgDwarf from '../assets/images/bg/dwarf.jpg';
+import BgOrc from '../assets/images/bg/orcs.png';
+import BgElf from '../assets/images/bg/elves.png';
+import BgDwarf from '../assets/images/bg/dwarf.png';
 // Import icons from react-icons
 import { 
   FaHandshake, FaCoins, FaChessKnight, 
@@ -89,11 +89,11 @@ const races = [
     accentColor: '#d4af37', // Royal gold
     secondaryColor: '#800020', // Burgundy
     habitat: 'Kingdoms & Castles',
-    habitatIcon: <GiCastle />,
+    habitatIcon: <GiCastle size={28} className="text-[#d4af37]" />,
     strengths: [
-      { name: 'Diplomacy', icon: <FaHandshake />, description: 'Form alliances with other races and kingdoms' },
-      { name: 'Commerce', icon: <FaCoins />, description: 'Generate more gold from trade routes and markets' },
-      { name: 'Military Strategy', icon: <FaChessKnight />, description: 'Tactical advantage in large-scale battles' }
+      { name: 'Diplomacy', icon: <FaHandshake size={24} />, description: 'Form alliances with other races and kingdoms' },
+      { name: 'Commerce', icon: <FaCoins size={24} />, description: 'Generate more gold from trade routes and markets' },
+      { name: 'Military Strategy', icon: <FaChessKnight size={24} />, description: 'Tactical advantage in large-scale battles' }
     ],
     quote: "Unity through diversity, strength through alliance."
   },
@@ -107,11 +107,11 @@ const races = [
     accentColor: '#8B0000', // Dark red
     secondaryColor: '#2F4F4F', // Dark slate gray
     habitat: 'Mountains & Strongholds',
-    habitatIcon: <GiCaveEntrance />,
+    habitatIcon: <GiCaveEntrance size={28} className="text-green-500" />,
     strengths: [
-      { name: 'Physical Strength', icon: <FaDumbbell />, description: 'Deal more damage in close combat' },
-      { name: 'Hunting', icon: <FaHiking />, description: 'Superior tracking and resource gathering' },
-      { name: 'Reproduction', icon: <FaBabyCarriage />, description: 'Faster population growth and recovery' }
+      { name: 'Physical Strength', icon: <FaDumbbell size={24} />, description: 'Deal more damage in close combat' },
+      { name: 'Hunting', icon: <FaHiking size={24} />, description: 'Superior tracking and resource gathering' },
+      { name: 'Reproduction', icon: <FaBabyCarriage size={24} />, description: 'Faster population growth and recovery' }
     ],
     quote: "Strength is our birthright, conquest our destiny."
   },
@@ -125,11 +125,11 @@ const races = [
     accentColor: '#B87333', // Copper
     secondaryColor: '#36454F', // Charcoal
     habitat: 'Mountain Halls & Forges',
-    habitatIcon: <GiAnvil />,
+    habitatIcon: <GiAnvil size={28} className="text-[#B87333]" />,
     strengths: [
-      { name: 'Crafting', icon: <FaHammer />, description: 'Create superior weapons, armor and structures' },
-      { name: 'Mining', icon: <FaGem />, description: 'Extract more resources from mineral deposits' },
-      { name: 'Resilience', icon: <FaShieldAlt />, description: 'Greater resistance to damage and magical effects' }
+      { name: 'Crafting', icon: <FaHammer size={24} />, description: 'Create superior weapons, armor and structures' },
+      { name: 'Mining', icon: <FaGem size={24} />, description: 'Extract more resources from mineral deposits' },
+      { name: 'Resilience', icon: <FaShieldAlt size={24} />, description: 'Greater resistance to damage and magical effects' }
     ],
     quote: "From the mountain's heart, we forge our legacy."
   },
@@ -143,11 +143,11 @@ const races = [
     accentColor: '#228B22', // Forest green
     secondaryColor: '#4682B4', // Steel blue
     habitat: 'Ancient Forests & Coastal Havens',
-    habitatIcon: <GiElfEar />,
+    habitatIcon: <GiElfEar size={28} className="text-[#228B22]" />,
     strengths: [
-      { name: 'Nature Magic', icon: <FaLeaf />, description: 'Harness the power of nature for healing and defense' },
-      { name: 'Archery', icon: <FaBullseye />, description: 'Unmatched accuracy with ranged weapons' },
-      { name: 'Longevity', icon: <FaHourglassHalf />, description: 'Wisdom from centuries of life experience' }
+      { name: 'Nature Magic', icon: <FaLeaf size={24} />, description: 'Harness the power of nature for healing and defense' },
+      { name: 'Archery', icon: <FaBullseye size={24} />, description: 'Unmatched accuracy with ranged weapons' },
+      { name: 'Longevity', icon: <FaHourglassHalf size={24} />, description: 'Wisdom from centuries of life experience' }
     ],
     quote: "In harmony with nature lies our eternal strength."
   },

@@ -1,10 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Logo from '../../assets/images/logo.png';
+import { useWallet } from '../../contexts/WalletContext';
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { account } = useWallet();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +38,7 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-8">
             <Link 
               to="/" 
-              className={`m-auto trsssansition-colors ${isActive('/') ? 'text-primary-400' : 'text-white hover:text-primary-300'}`}
+              className={`m-auto transition-colors ${isActive('/') ? 'text-primary-400' : 'text-white hover:text-primary-300'}`}
             >
               Home
             </Link>
@@ -52,10 +55,10 @@ const Navbar = () => {
               Careers
             </Link>
             <Link 
-              to="/presale" 
-              className="btn-primary"
+              to={account ? "/presale" : "/connect"} 
+              className="btn-primary px-4 py-2"
             >
-              Token Presale
+              {account ? "Token Presale" : "Connect Wallet"}
             </Link>
           </div>
 
@@ -102,11 +105,11 @@ const Navbar = () => {
                 Careers
               </Link>
               <Link 
-                to="/presale" 
+                to={account ? "/presale" : "/connect"}
                 className="btn-primary text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Token Presale
+                {account ? "Token Presale" : "Connect Wallet"}
               </Link>
             </div>
           </div>

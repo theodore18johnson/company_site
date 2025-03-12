@@ -42,9 +42,9 @@ const CareerView = ({ careerData }: CareerViewProps) => {
   };
 
   return (
-    <div className="pt-20">
+    <div className="pt-[104px]">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-purple-900/20">
+      <section className="py-20 bg-primary-900">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text">{intro.title}</h1>
@@ -69,7 +69,7 @@ const CareerView = ({ careerData }: CareerViewProps) => {
             {benefits.map((benefit) => (
               <div 
                 key={benefit.id} 
-                className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 transition-transform hover:-translate-y-2 hover:shadow-xl border border-purple-500/20"
+                className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 transition-transform hover:-translate-y-2 hover:shadow-xl border border-primary-500/20"
               >
                 <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
                 <p className="text-gray-400">{benefit.description}</p>
@@ -80,7 +80,7 @@ const CareerView = ({ careerData }: CareerViewProps) => {
       </section>
 
       {/* Job Openings Section */}
-      <section className="py-20 bg-gradient-to-b from-purple-900/20 to-black">
+      <section className="py-20 bg-gradient-to-b from-primary-900/20 to-black">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">Open Positions</h2>
@@ -93,7 +93,7 @@ const CareerView = ({ careerData }: CareerViewProps) => {
             {openings.map((job) => (
               <div 
                 key={job.id} 
-                className="bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-purple-500/20"
+                className="bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-primary-500/20"
               >
                 <div 
                   className="p-6 cursor-pointer flex justify-between items-center"
@@ -102,7 +102,7 @@ const CareerView = ({ careerData }: CareerViewProps) => {
                   <div>
                     <h3 className="text-xl font-bold">{job.title}</h3>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      <span className="bg-purple-900/50 text-purple-400 px-3 py-1 rounded-full text-sm">
+                      <span className="bg-primary-900/50 text-primary-400 px-3 py-1 rounded-full text-sm">
                         {job.department}
                       </span>
                       <span className="bg-blue-900/50 text-blue-400 px-3 py-1 rounded-full text-sm">
@@ -131,11 +131,11 @@ const CareerView = ({ careerData }: CareerViewProps) => {
                     <p className="text-gray-300 mb-6">{job.description}</p>
                     
                     <div className="mb-6">
-                      <h4 className="text-lg font-semibold mb-3 text-purple-400">Requirements</h4>
+                      <h4 className="text-lg font-semibold mb-3 text-primary-400">Requirements</h4>
                       <ul className="space-y-2">
                         {job.requirements.map((req, index) => (
                           <li key={index} className="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-400 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-400 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                             </svg>
                             <span className="text-gray-300">{req}</span>
@@ -145,11 +145,11 @@ const CareerView = ({ careerData }: CareerViewProps) => {
                     </div>
                     
                     <div className="mb-6">
-                      <h4 className="text-lg font-semibold mb-3 text-purple-400">Responsibilities</h4>
+                      <h4 className="text-lg font-semibold mb-3 text-primary-400">Responsibilities</h4>
                       <ul className="space-y-2">
                         {job.responsibilities.map((resp, index) => (
                           <li key={index} className="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-400 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary-400 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                             </svg>
                             <span className="text-gray-300">{resp}</span>
@@ -170,7 +170,7 @@ const CareerView = ({ careerData }: CareerViewProps) => {
       {/* CTA Section */}
       <section className="py-20 bg-black relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 animate-pulse"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-blue-600 animate-pulse"></div>
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">

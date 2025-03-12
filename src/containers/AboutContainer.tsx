@@ -49,7 +49,7 @@ const aboutData = {
     {
       id: 1,
       phase: "Phase 1: Foundation",
-      timeline: "Q1-Q2 2023",
+      timeline: "Q3-Q4 2024",
       milestones: [
         "Zeus AI engine development",
         "Initial continent generation",
@@ -61,19 +61,19 @@ const aboutData = {
     {
       id: 2,
       phase: "Phase 2: Early Access",
-      timeline: "Q3-Q4 2023",
+      timeline: "Q1-Q2 2025",
       milestones: [
         "Token presale",
         "Alpha testing with limited player base",
         "Implementation of basic game mechanics",
         "First kingdom establishment"
       ],
-      completed: true
+      completed: false
     },
     {
       id: 3,
       phase: "Phase 3: Expansion",
-      timeline: "Q1-Q2 2024",
+      timeline: "Q3-Q4 2025",
       milestones: [
         "Beta launch with all four races",
         "Introduction of crafting and economy systems",
@@ -85,7 +85,7 @@ const aboutData = {
     {
       id: 4,
       phase: "Phase 4: Full Release",
-      timeline: "Q3-Q4 2024",
+      timeline: "Q1-Q2 2026",
       milestones: [
         "Official game launch",
         "Introduction of guild systems",
